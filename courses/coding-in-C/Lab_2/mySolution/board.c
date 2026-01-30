@@ -22,7 +22,7 @@ int main() {
     printLetters();
     printLine();
     for (int i = 0; i < BOARD_SIZE; i++) {
-        printf(" %d |", BOARD_SIZE-i);
+        printf("%2d |", BOARD_SIZE-i);
         for (int j = 0; j < BOARD_SIZE; j++) {
             printf(((j+i)%2) ? "   " : "###");
             printf("|");
