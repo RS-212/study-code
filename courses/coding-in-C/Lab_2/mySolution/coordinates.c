@@ -3,7 +3,7 @@
 int main() {
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            printf("%c%d ", j+0x41, 8-i);
+            printf("%c%d ", j+'A', 8-i);
         }
         printf("\n");
     }
