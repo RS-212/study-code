@@ -1,5 +1,21 @@
 #include <stdio.h>
 
+float add(float a, float b) {
+    return a+b;
+}
+
+float subtract(float a, float b) {
+    return a-b;
+}
+
+float multiply(float a, float b) {
+    return a*b;
+}
+
+float divide(float a, float b) {
+    return a/b;
+}
+
 int main() {
     float f_num1 = 0;
     float f_num2 = 0;
@@ -52,16 +68,16 @@ int main() {
 
     switch (c_operator) {
         case '+':
-            f_result = f_num1 + f_num2;
+            f_result = add(f_num1, f_num2);
             break;
         case '-':
-            f_result = f_num1 - f_num2;
+            f_result = subtract(f_num1, f_num2);
             break;
         case '*':
-            f_result = f_num1 * f_num2;
+            f_result = multiply(f_num1, f_num2);
             break;
         case '/':
-            f_result = f_num1 / f_num2;
+            f_result = divide(f_num1, f_num2);
             break;
     }
 
