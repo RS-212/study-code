@@ -34,7 +34,7 @@ int main() {
         printf("\nInvalid operation! Try again...\n\n");
     }
 
-    // Execute calculation
+    /* Execute calculation
     if (c_operator == '+')
     {
         f_result = f_num1 + f_num2;
@@ -48,9 +48,25 @@ int main() {
     {
         f_result = f_num1 / f_num2;
     }
+    */
+
+    switch (c_operator) {
+        case '+':
+            f_result = f_num1 + f_num2;
+            break;
+        case '-':
+            f_result = f_num1 - f_num2;
+            break;
+        case '*':
+            f_result = f_num1 * f_num2;
+            break;
+        case '/':
+            f_result = f_num1 / f_num2;
+            break;
+    }
 
     // Print result
-    printf("\n%f %c %f = %f\n", f_num1, f_num2, c_operator, f_result);
+    printf("\n%f %c %f = %f\n", f_num1, c_operator, f_num2, f_result);
 
     return 0;
 }
