@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
+#include <ctype.h>
 
 #define MAX_STR_LEN 100
 
@@ -18,7 +19,9 @@ bool check_palindrome(char ca_input[])
     for (int i = 0; i < i_middle; i++)
     {
         //printf("\n%c\n%c\n", ca_input[i], ca_input[i_length-i]);
-        if (ca_input[i] != ca_input[i_length-i])
+        char char1 = tolower(ca_input[i]);
+        char char2 = tolower(ca_input[i_length-i]);
+        if (char1 != char2)
         {
             return false;
         }
