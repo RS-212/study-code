@@ -1,3 +1,9 @@
+/**
+ * @file Section_III.c
+ * @brief Palindrome checker - Case insensitive
+ * 
+ */
+
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>

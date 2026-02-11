@@ -1,3 +1,9 @@
+/**
+ * @file Section_I.c
+ * @brief My solution to Section I
+ * 
+ */
+
 #include <stdio.h>
 
 /**
