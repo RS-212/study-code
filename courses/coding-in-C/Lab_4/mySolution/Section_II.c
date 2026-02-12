@@ -19,7 +19,7 @@
  */
 bool check_palindrome(char ca_input[])
 {
-    int i_length = strlen(ca_input) - 1;    // -1 to ignore \0
+    int i_length = strlen(ca_input)-1;
     int i_middle = i_length / 2;        // rounds down in case of uneven numbers -> middle letter is ignored
     for (int i = 0; i < i_middle; i++)
     {
@@ -53,11 +53,11 @@ int main()
 
     if (check_palindrome(ca_edited_input))
     {
-        printf("Your provided word \"%s\" is a palindrome.", ca_edited_input);
+        printf("Your provided word \"%s\" is a palindrome.\n", ca_edited_input);
     }
     else
     {
-        printf("Your provided word \"%s\" is not a palindrome.", ca_edited_input);
+        printf("Your provided word \"%s\" is not a palindrome.\n", ca_edited_input);
     }
 
     return 0;

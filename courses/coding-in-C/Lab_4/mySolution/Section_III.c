@@ -56,11 +56,11 @@ int main()
 
     if (check_palindrome(ca_edited_input))
     {
-        printf("Your provided word \"%s\" is a palindrome.", ca_edited_input);
+        printf("Your provided word \"%s\" is a palindrome.\n", ca_edited_input);
     }
     else
     {
-        printf("Your provided word \"%s\" is not a palindrome.", ca_edited_input);
+        printf("Your provided word \"%s\" is not a palindrome.\n", ca_edited_input);
     }
 
     return 0;
