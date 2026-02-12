@@ -9,8 +9,7 @@ int main(int argc, char **argv)
         return -1;
     }
     
-    //for (int i = 1; i < (sizeof(argv) / sizeof(*argv)); i++)
-    for (int i = 1; i < argc; i++)
+    for (int i = 0; i < argc; i++)
     {
         char *argument = argv[i];
         //char *argument = *(argv + i);
