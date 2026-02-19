@@ -1,3 +1,9 @@
+/**
+ * @file particles.c
+ * 
+ * @brief Simple 1D particle simulation
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -63,11 +69,16 @@ int main()
         }
     }
 
-
-
     return 0;
 }
 
+/**
+ * @brief print array with peceeding space
+ * 
+ * @param[in] array Input Array
+ * @param[in] length Length of input array
+ * 
+ */
 void print_current_field(int *arr, int len)
 {
     for (int i = 0; i < len; i++)
