@@ -1,0 +1,7 @@
+This file contains data
+This is the second line
+Third line here
+Line number 4 °-°
+
+This line is new!
+Float-Zahl: 12.000000, String: Test String
