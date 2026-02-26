@@ -29,6 +29,12 @@ typedef struct
     int object_detection[SAMPLE_SIZE];
 } Sensor;
 
+typedef struct
+{
+    float start_time;
+    float end_time;
+} Interval;
+
 /**
  * @brief Opens sensor file and stores contents so Sensor struct
  * 
@@ -45,7 +51,7 @@ int store_sensor_data(Sensor *sensor, char *path)
     if (sensor_file == NULL)
     {
         printf("Failed to open sensor file! Check the paths...\n");
-        return 0;
+        return -1;
     }
 
     // Write sensor data from file to struct
@@ -54,7 +60,12 @@ int store_sensor_data(Sensor *sensor, char *path)
         float *time = &(sensor->data[i].time);
         double *probability = &(sensor->data[i].probability);
 
-        fscanf(sensor_file, "%f %lf", time, probability);
+        if (fscanf(sensor_file, "%f %lf", time, probability) != 2)
+        {
+            printf("Incorrect file format or insufficient data! Stopping Program.\n");
+            fclose(sensor_file);
+            return -1;
+        }
 
         // Update object_detection based on data
         sensor->object_detection[i] = (*probability > sensor->threshold) ? 1 : 0;
@@ -66,16 +77,10 @@ int store_sensor_data(Sensor *sensor, char *path)
     if (fclose(sensor_file) == -1)
     {
         printf("Failed to close file °o°");
-        return 0;
+        return -1;
     }
     return 1;
 }
-
-typedef struct
-{
-    float start_time;
-    float end_time;
-} Interval;
 
 /**
  * @brief Stores interval start and end times for sensor data
@@ -83,7 +88,7 @@ typedef struct
  * @param[out] intervals Array, that stores the different detection intervals
  * @param[in] sensor Sensor data
  */
-void determine_intervals(Interval *interval, Sensor *sensor)
+void determine_intervals(Interval interval[], Sensor *sensor)
 {
     int detection = 0;
     int interval_index = 0;
@@ -103,6 +108,20 @@ void determine_intervals(Interval *interval, Sensor *sensor)
             interval_index++;
         }
     }
+    // If file ends before detection, end interval at end of file
+    if (detection == 1)
+    {
+        interval[interval_index].end_time = sensor->data[SAMPLE_SIZE-1].time;
+    }
+}
+
+void fusing_sensors(Sensor *sensor1, Sensor *sensor2, Sensor *fused)
+{
+    for (int i = 0; i < SAMPLE_SIZE; i++)
+    {
+        fused->data[i].time = sensor1->data[i].time;
+        fused->object_detection[i] = sensor1->object_detection[i] && sensor2->object_detection[i];
+    }
 }
 
 /**
@@ -110,7 +129,7 @@ void determine_intervals(Interval *interval, Sensor *sensor)
  * 
  * @param[in] detection_intervals array of size INTERVALS with -1 as default values
  */
-void print_detections(Interval *intervals)
+void print_detections(Interval intervals[])
 {
     for (int i = 0; i < INTERVALS; i++)
     {
@@ -118,7 +137,7 @@ void print_detections(Interval *intervals)
         {
             break;
         }
-        printf("Start: %.2f s End: %.2f s ");
+        printf("Start: %.2f s End: %.2f s ", intervals[i].start_time, intervals[i].end_time);
     }
     printf("\n");
 }
@@ -134,8 +153,22 @@ int main()
     sensor1.threshold = SENSOR_1_THRESHOLD;
     sensor2.threshold = SENSOR_2_THRESHOLD;
 
-    store_sensor_data(&sensor1, SENSOR_1_PATH);
-    store_sensor_data(&sensor2, SENSOR_2_PATH);
+    /* Alternativ: (da id und threshold die ersten 2 Elemente des Structs sind)
+    Sensor sensor1 = {0, SENSOR_1_THRESHOLD};
+    Sensor sensor2 = {1, SENSOR_2_THRESHOLD};
+    */
+
+    if (store_sensor_data(&sensor1, SENSOR_1_PATH) < 0)
+    {
+        return -1;
+    }
+    if (store_sensor_data(&sensor2, SENSOR_2_PATH) < 0)
+    {
+        return -1;
+    }
+    
+    Sensor fused = {2, -1};
+    fusing_sensors(&sensor1, &sensor2, &fused);
 
     // Determine start and end times for each detection interval
     Interval detections_sensor1[INTERVALS];
@@ -158,6 +191,7 @@ int main()
     // Store valid interval values; the rest stays -1
     determine_intervals(detections_sensor1, &sensor1);
     determine_intervals(detections_sensor2, &sensor2);
+    determine_intervals(overlap, &fused);
 
     // Print detection results
     printf("--- Object Detection Results ---\n");
