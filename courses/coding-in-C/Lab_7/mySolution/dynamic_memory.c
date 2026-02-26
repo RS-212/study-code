@@ -21,7 +21,11 @@ int main()
     }
     
     // Store N at allocated memory address
-    scanf("%d", ptr_N);
+    if (scanf("%d", ptr_N) != 1)
+    {
+        printf("Error reading int value. Exiting.\n");
+        return -1;
+    }
 
     // Allocate memory for n int variables
     int *ptr_ints = (int*)calloc(*ptr_N, sizeof(int));
