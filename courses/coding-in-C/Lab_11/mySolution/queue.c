@@ -99,19 +99,45 @@ void print_queue(Queue *queue)
 int main()
 {
     Queue *my_queue = malloc(sizeof(*my_queue));
+    if(!my_queue)
+    {
+        printf("Error allocating memory!\n");
+        return 1;
+    }
     my_queue->head = NULL;
     my_queue->size = 0;
 
     
     Node *node1 = malloc(sizeof(*node1));
+    if(!node1)
+    {
+        printf("Error allocating memory!\n");
+        free(my_queue);
+        return 1;
+    }
     node1->p_next = NULL;
     node1->value = 12;
 
     Node *node2 = malloc(sizeof(*node2));
+    if(!node2)
+    {
+        printf("Error allocating memory!\n");
+        free(my_queue);
+        free(node1);
+        return 1;
+    }
     node2->p_next = NULL;
     node2->value = 24;
     
     Node *node3 = malloc(sizeof(*node3));
+    if(!node3)
+    {
+        printf("Error allocating memory!\n");
+        free(my_queue);
+        free(node1);
+        free(node2);
+        return 1;
+    }
     node3->p_next = NULL;
     node3->value = 48;
 
@@ -123,7 +149,16 @@ int main()
     enqueue(node2, my_queue);
     print_queue(my_queue);
 
-    dequeue(my_queue);
+    Node *temp = dequeue(my_queue);
+    if(!temp)
+    {
+        printf("Error dequeuing!\n");
+        free(my_queue);
+        free(node1);
+        free(node2);
+        free(node3);
+        return 1;
+    }
     print_queue(my_queue);
 
     enqueue(node3, my_queue);

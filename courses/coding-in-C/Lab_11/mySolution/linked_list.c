@@ -257,22 +257,57 @@ int main()
 {
     // Create some nodes
     Node *node1 = malloc(sizeof(*node1));
+    if(!node1)
+    {
+        printf("Error allocating memory!\n");
+        return 1;
+    }
     node1->value = 13;
     node1->p_next = NULL;
 
     Node *node2 = malloc(sizeof(*node2));
+    if(!node2)
+    {
+        printf("Error allocating memory!\n");
+        free(node1);
+        return 1;
+    }
     node2->value = 42;
     node2->p_next = NULL;
 
     Node *node3 = malloc(sizeof(*node3));
+    if(!node3)
+    {
+        printf("Error allocating memory!\n");
+        free(node1);
+        free(node2);
+        return 1;
+    }
     node3->value = 55;
     node3->p_next = NULL;
 
     Node *node4 = malloc(sizeof(*node4));
+    if(!node4)
+    {
+        printf("Error allocating memory!\n");
+        free(node1);
+        free(node2);
+        free(node3);
+        return 1;
+    }
     node4->value = 17;
     node4->p_next = NULL;
 
     List *my_list = malloc(sizeof(*my_list));
+    if(!my_list)
+    {
+        printf("Error allocating memory!\n");
+        free(node1);
+        free(node2);
+        free(node3);
+        free(node4);
+        return 1;
+    }
     my_list->head = node1;
     my_list->size = 1; // 1 because it already contains a head node
 
