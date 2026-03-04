@@ -13,7 +13,7 @@ int main()
     printf("Please enter an integer N...\n");
 
     // Allocate memory for N
-    int *ptr_N = (int*)malloc(sizeof(int));
+    int *ptr_N = malloc(sizeof *ptr_N);
     if (!ptr_N)
     {
         printf("Error allocating memory for the int N. Exiting.\n");
@@ -24,14 +24,16 @@ int main()
     if (scanf("%d", ptr_N) != 1)
     {
         printf("Error reading int value. Exiting.\n");
+        free(ptr_N);
         return -1;
     }
 
     // Allocate memory for n int variables
-    int *ptr_ints = (int*)calloc(*ptr_N, sizeof(int));
+    int *ptr_ints = calloc(*ptr_N, sizeof(int));
     if (!ptr_ints)
     {
         printf("Error allocating memory for the N ints. Exiting.\n");
+        free(ptr_N);
         return -1;
     }
 
@@ -42,9 +44,11 @@ int main()
     }
 
     // Resize array to twice it's size
-    int *ptr_temp = realloc(ptr_ints, (*ptr_N) * 2);
+    int *ptr_temp = realloc(ptr_ints, (*ptr_N) * 2 * sizeof(int));
     if (!ptr_temp)
     {
+        free(ptr_N);
+        free(ptr_ints);
         printf("Error resizing array!. Exiting.\n");
         return -1;
     }
