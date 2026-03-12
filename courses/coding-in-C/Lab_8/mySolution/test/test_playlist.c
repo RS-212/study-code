@@ -37,7 +37,7 @@ void test_add_song(void)
 void test_delete_firstSong(void)
 {
     Playlist *p = init_playlist();
-    add_song("title", "artist", p);
+    assert(add_song("title", "artist", p) == 1);  // also test if add_song worked
 
     assert(delete_firstSong(p) == 1);
     assert(p->first_song == NULL);
@@ -63,7 +63,7 @@ void test_delete_playlist(void)
     // Fill playlist with 10 dummy songs
     for(int i = 0; i < 10; i++)
     {
-        add_song("dummy", "dummy", p);
+        assert(add_song("dummy", "dummy", p) == 1);
     }
 
     assert(delete_playlist(&p) == 1);
@@ -100,7 +100,7 @@ void test_get_playlist_length(void)
 
     for(int i = 0; i < MAX_SONGS; i++)
     {
-        add_song("dummy", "dummy", p);
+        assert(add_song("dummy", "dummy", p) == 1);
         
         assert(get_playlist_length(p) == i+1);
     }
