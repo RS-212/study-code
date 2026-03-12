@@ -73,6 +73,7 @@ void test_delete_playlist(void)
     p = init_playlist();
 
     assert(delete_playlist(&p) == 0);
+    assert(p == NULL);
 }
 
 // Test max song limit
