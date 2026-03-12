@@ -21,7 +21,7 @@ Playlist *init_playlist();
 int add_song(const char *title, const char *artist, Playlist *playlist);
 void print_playlist(Playlist *playlist);
 int delete_firstSong(Playlist *playlist);
-int delete_playlist(Playlist *playlist);
+int delete_playlist(Playlist **playlist);
 int get_playlist_length(Playlist *playlist);
 
 #endif

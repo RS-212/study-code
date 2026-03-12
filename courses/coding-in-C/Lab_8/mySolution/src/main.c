@@ -1,4 +1,4 @@
-#include "./include/playlist.h"
+#include "../include/playlist.h"
 #include <stdio.h>
 
 int main()
@@ -15,7 +15,7 @@ int main()
         if(!add_song(songs[i], artists[i], my_playlist))
         {
             printf("Error adding song. Exiting!\n");
-            delete_playlist(my_playlist);
+            delete_playlist(&my_playlist);
             return 1;
         }
     }
@@ -30,7 +30,7 @@ int main()
     print_playlist(my_playlist);
 
     // 6. Delete complete playlist and free memory for playlist
-    delete_playlist(my_playlist);
+    delete_playlist(&my_playlist);
 
     return 0;
 }

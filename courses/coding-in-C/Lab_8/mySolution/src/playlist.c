@@ -144,26 +144,27 @@ int delete_firstSong(Playlist *playlist)
 /**
  * @brief Remove all songs from the playlist and free all allocated memory
  * 
- * @param[out] playlist playlist to delete -> will become empty playlist
+ * @param[out] playlist playlist to delete -> will become NULL pointer
  * 
  * @return 0 if playlist already empty, else: 1
  */
-int delete_playlist(Playlist *playlist)
+int delete_playlist(Playlist **playlist)
 {
-    if(playlist->first_song == NULL)
+    if((*playlist)->first_song == NULL)
     {
         printf("Playlist is already empty!\n");
-        free(playlist);
+        free(*playlist);
         return 0;
     }
 
     // Remove first song of playlist as long as there are songs in the playlist
-    while(playlist->first_song != NULL)
+    while((*playlist)->first_song != NULL)
     {
-        delete_firstSong(playlist);
+        delete_firstSong(*playlist);
     }
 
-    free(playlist);
+    free(*playlist);
+    *playlist = NULL;
     return 1;
 }
 
