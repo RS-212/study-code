@@ -96,7 +96,15 @@ Create a class “Note” that stores a text message which is only known at runt
 * When a Note object is copied, the new object must allocate its own memory and store its own copy of the string
 * Verify if this resolves the observed issue from Part 1
 
-## 🟢 Section III: Fluent Drink Builder
+## 🟢 Section III: Our C++ coding convention Part 2
+The goal of this section is to familiarize yourself with the C++ coding convention of this course.
+
+### Task Description
+* Navigate to the __coding-in-C++__ folder and open the __cpp_coding_conventions.md__
+* Read the remaining points (starting with section 18) of the convention in detail
+* Write down any point that is unclear to you for later discussions
+
+## 🟢 Section IV: Fluent Drink Builder
 
 In this task you will implement a small helper class using **method chaining** and **constexpr values**.
 
@@ -183,7 +191,7 @@ With milk: true
 
 ---
 
-## 🟡 Section IV: Fault Analysis – Online Shop Article Class
+## 🟡 Section V: Fault Analysis – Online Shop Article Class
 
 In this section you will analyze and debug an existing class implementation instead of writing one from scratch.
 
@@ -311,7 +319,7 @@ Please use meaningful object names and concrete attribute values.
 ### Hint
 Many of the errors are related to core OOP principles such as encapsulation, proper initialization, and safe memory handling discussed in the lecture.
 
-## 🟢 Section IV: Create UML Class Diagram
+## 🟢 Section VI: Create UML Class Diagram
 
 In this section you will practice the basics of the UML class diagram notation.
 
@@ -352,7 +360,7 @@ A cinema manages movies, customers, and tickets.
    - Mark appropriate methods with `{query}`
    - Use the direction for parameters
 
-## 🔴 Section V: Search Engine
+## 🔴 Section VII: Search Engine
 
 In this section, you will create a simplified **Search Engine System** including UML diagrams and C++ code.
 
