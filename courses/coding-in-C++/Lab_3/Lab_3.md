@@ -1,6 +1,6 @@
-# Lab 2: From C to C++
+# Lab 3: Relations between Classes
 
-This lab focuses on getting started with C++ especially for programmers familiar with C.
+This lab introduces fundamental concepts of object-oriented programming in C++, with a focus on modeling and implementing relationships between classes.
 
 All the following sections of this lab are based on the following levels of dificulty:
 
@@ -16,7 +16,7 @@ In this section you will model a simplified **Online Learning Platform** and foc
 
 You will practice the following concepts:
 
-- UML class diagrams  
+- UML class diagrams
 - identifying **composition vs aggregation**  
 - modeling multiplicities and associations  
 - transferring UML into C++ code  
@@ -110,3 +110,79 @@ Transfer your UML model into C++ code.
 - In main, create objects of your classes
 - Simulate interaction (e.g. enrolling, accessing content)  
 - Call at least one method from each class  
+
+## Section II: Inheritance in C++ – Basics and Practice
+
+In this section you will explore inheritance as a fundamental mechanism to model relationships between classes and reuse code.
+
+You will practice the following concepts:
+
+basic inheritance syntax in C++
+access modifiers (public, protected, private)
+using protected members
+constructors in base and derived classes
+passing parameters to base class constructors
+
+---
+
+### 🧩 Task Description
+
+You will extend a simple class hierarchy to model different types of users in a learning platform.
+
+### 📘 Requirements
+
+Start with a base class **User**.
+
+Use the following UML class diagram:
+
+![User UML](lab3_sectionII.svg)
+
+The diagram specifies:
+- attributes (including visibility)
+- constructor
+- member functions
+
+---
+
+### 🟢 Task Part 1 – UML Interpretation
+
+- Interpret the UML diagram of the `User` class  
+- Identify:
+  - attributes and their visibility  
+  - constructor parameters  
+  - available methods
+- Transfer it into C++ code
+
+---
+
+### 🟢 Task Part 2 – Basic Inheritance
+
+- Create two derived classes:
+
+  - `Student`
+  - `Instructor`
+
+- Both classes should:
+
+  - inherit from `User`
+  - have at least one additional attribute  
+  - implement a method `printRole()` that uses the inherited attributes from `User` in the derived classes
+
+- Add a short comment explaining:
+  - why `protected` is used instead of `private`
+- Implement constructors for `Student` and `Instructor`  
+- Use initializer lists to call the base class constructor  
+
+To test the classes in main:
+- Create objects of:
+  - `Student`
+  - `Instructor`  
+
+- Call:
+  - `printInfo()`  
+  - `printRole()`  
+
+### 💬 Reflection Questions
+
+1. What would change if the access specifier in the inheritance declaration is deleted?
+2. Why is it important to call the base class constructor?  
