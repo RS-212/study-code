@@ -1,4 +1,4 @@
-# Lab 2: From C to C++
+# Lab 3: Relations between Classes
 
 This lab focuses on getting started with C++ especially for programmers familiar with C.
 
@@ -16,7 +16,7 @@ In this section you will model a simplified **Online Learning Platform** and foc
 
 You will practice the following concepts:
 
-- UML class diagrams  
+- UML class diagrams
 - identifying **composition vs aggregation**  
 - modeling multiplicities and associations  
 - transferring UML into C++ code  
