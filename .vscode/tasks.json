@@ -27,6 +27,7 @@
                 "-std=c++20",
                 "-g",
                 "${file}",
+                "${fileDirname}/reportHelpers.cpp", // Modified that the reportCard program compiles
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],
