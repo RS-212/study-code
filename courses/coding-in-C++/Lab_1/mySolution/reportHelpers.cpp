@@ -18,7 +18,7 @@
  * 
  * @return valid score
  */
-std::uint_fast8_t readScore(std::string userPrompt)
+std::uint_fast16_t readScore(std::string userPrompt)
 {
     const std::uint_fast16_t MIN_SCORE = 0;
     const std::uint_fast16_t MAX_SCORE = 100;
@@ -56,7 +56,7 @@ std::uint_fast8_t readScore(std::string userPrompt)
         break;
     }
 
-    return static_cast<uint_fast8_t>(scoreFromUser);
+    return scoreFromUser;
 }
 
 
@@ -177,7 +177,7 @@ void printReport(
 
     // determine status before printing
     std::string status = "PASS";
-    if (letterGrade == "D" || letterGrade == "F")
+    if (letterGrade == "D" || letterGrade == "E")
     {
         status = "CONDITIONAL PASS";
     }
