@@ -83,9 +83,10 @@ Decide:
 Enable comparison between two vectors.
 
 - Implement equality and inequality checks
+- Implement these checks independent of each other
 - Test the comparison operators in the main function
 
-Consider the challenges of comparing floating-point values
+Consider the challenges of comparing floating-point values.
 
 
 ## 🟢 Section II: Introduction to dynamic Polymorphism
