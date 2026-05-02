@@ -7,9 +7,13 @@
 #include "drone_test_bench.hpp"
 #include <iostream>
 #include <string>
+#include <vector>
+#include <algorithm>
 
 int main ()
 {
+    // === SECTION I ===
+
     // test values int
     int number1 = 42;
     int number2 = 21;
@@ -87,10 +91,99 @@ int main ()
     print_sensor_frame(double_arr_size_6);
     std::cout << detect_weakest(double_arr_size_6) << std::endl;
 
+    std::cout << std::endl;
+
     /**
      * Answers to questions:
      * The size is no longer needed, because the compiler knows the array size at compile time.
-     * The template allows 
+     * This eliminates the risk of accessing memory outside the array by mistake
+     * The user cannot give an incorrect size, simpler function interface,
+     * safer function, errors are caught by compiler at compile time 
+     */
+
+    // === SECTION II ===
+
+    std::cout << "=== Section II ===\n";
+
+    // === Task 6 ===
+
+    std::vector<int> flight_data = {42, 17, 42, 5, 99, 17, 63, 12};
+
+    // Print data using foreach
+    for (int data_point : flight_data)
+    {
+        std::cout << data_point << ' ';
+    }
+    std::cout << '\n' << std::endl;
+
+    // Sort data using STL function
+    std::sort(flight_data.begin(), flight_data.end());
+
+    // Print sorted data
+    print_vector(flight_data);
+
+    std::cout << std::endl;
+
+    // Search for value
+    const int search_value = 63;
+
+    std::vector<int>::iterator it;
+    it = std::find(flight_data.begin(), flight_data.end(), search_value);
+
+    std::cout << "The value '" << search_value;
+    if (it != flight_data.end())
+    {
+        std::cout << "' exists!";
+    }
+    else
+    {
+        std::cout << "' doesn't exist!";
+    }
+    std::cout << '\n' << std::endl;
+
+
+    // === Task 7 ===
+
+    flight_data = {7, -1, 13, -1, 21, 21, 8, -1, 8};
+
+
+    // Replace -1 with 0
+    std::replace(flight_data.begin(), flight_data.end(), -1, 0);
+
+    // Print data
+    print_vector(flight_data);
+
+
+    // Count number 8
+    const int count_num = 8;
+    int occurences = std::count(flight_data.begin(), flight_data.end(), count_num);
+
+    // Print result
+    std::cout << "The number " << count_num << " occurs " << occurences << " times." << std::endl;
+
+
+    // Reverse data set
+    std::reverse(flight_data.begin(), flight_data.end());
+
+    // Print data
+    print_vector(flight_data);
+
+    std::cout << "\n\n";
+
+    // === Task 8 ===
+    // I already did something like this in my print function
+    
+    // Loop through vector using iterators
+    for (std::vector<int>::iterator it = flight_data.begin(); it != flight_data.end(); ++it)
+    {
+        std::cout << *it << ' ';
+    }
+    std::cout << std::endl;
+
+    /**
+     * using ++it increments the iterator. The iterator now points at the next element in the vector
+     * 
+     * using *it is like dereferencing a pointer. It allows accessing the value in the vector, the iterator points to
      */
 
     return 0;

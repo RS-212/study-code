@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 /**
  * Task 1: A Template is better in this case because all given data types (int, double, string)
@@ -93,4 +94,20 @@ template <typename T, typename U>
 void compose_telemetry_tag(std::string label1, T value1, std::string label2, U value2)
 {
     std::cout << label1 << ": " << value1 << " | " << label2 << ": " << value2 << std::endl;
+}
+
+/**
+ * @brief Prints vector to console
+ * 
+ * @param vec Vector to print
+ */
+template <typename T>
+void print_vector(const std::vector<T>& vec)
+{
+    std::cout << "[";
+    for (typename std::vector<T>::const_iterator it = vec.begin(); it != (--vec.end()); ++it)
+    {
+        std::cout << *it << ", ";
+    }
+    std::cout << *(--vec.end()) << "]" << std::endl;
 }
