@@ -7,6 +7,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <numeric>
+#include <iomanip>
 
 /**
  * Task 1: A Template is better in this case because all given data types (int, double, string)
@@ -91,7 +94,7 @@ T detect_weakest(T (&sensor_data)[N])
  * @param[in] value2 second value
  */
 template <typename T, typename U>
-void compose_telemetry_tag(std::string label1, T value1, std::string label2, U value2)
+void compose_telemetry_tag(const std::string& label1, const T& value1, const std::string& label2, const U& value2)
 {
     std::cout << label1 << ": " << value1 << " | " << label2 << ": " << value2 << std::endl;
 }
@@ -110,4 +113,101 @@ void print_vector(const std::vector<T>& vec)
         std::cout << *it << ", ";
     }
     std::cout << *(--vec.end()) << "]" << std::endl;
+}
+
+// === SECTION III ===
+
+// Analyzer functions
+
+/**
+ * @brief Calculate the sum of all values stored in a std::vector
+ * 
+ * @param data std::vector holding the values
+ * 
+ * @return sum of all datapoints
+ */
+template <typename T>
+T sum_vector(const std::vector<T>& data)
+{
+    return std::accumulate(data.begin(), data.end(), T());
+}
+
+/**
+ * @brief Get largest value in a std::vector
+ * 
+ * @param data Vector to analyze
+ * 
+ * @return maximum value in the vector
+ */
+template <typename T>
+T max_vector(const std::vector<T>& data)
+{
+    return *std::max_element(data.begin(), data.end());
+}
+
+/**
+ * @brief Get average value of all values stored in a std::vector
+ * 
+ * @param data Vector to analyze
+ * 
+ * @return average value of all values in the vector
+ */
+template <typename T>
+T average_vector(const std::vector<T>& data)
+{
+    return (sum_vector(data) / data.size());
+}
+
+/**
+ * @brief Prints sum, max value and average of a given std::vector
+ * 
+ * @param data vector to analyze
+ */
+template <typename T>
+void print_metrics(const std::vector<T>& data)
+{
+    // Determine metrics
+    T sum = sum_vector(data);
+    T max = max_vector(data);
+    T avg = average_vector(data);
+
+    const int WIDTH = 33;
+    const int WIDTH_VALUE = 15;
+    
+    // Print data in readable format
+    std::cout << std::setw(WIDTH) << std::right << std::setfill('-') << '\n'; // Print divider
+
+    std::cout << "=== Drone Black Box Analysis ===\n";
+
+    std::cout << std::setw(WIDTH) << std::right << std::setfill('-') << '\n'; // Print divider
+
+    print_vector(data); // Print raw data
+
+    std::cout << std::setw(WIDTH) << std::right << std::setfill('-') << '\n'; // Print divider
+
+    std::cout << std::left << std::setfill(' '); // Prepare cout for value printing
+
+    std::cout << std::setw(WIDTH_VALUE) << "Sum: " << sum << std::endl;
+    std::cout << std::setw(WIDTH_VALUE) << "Max value: " << max << std::endl;
+    std::cout << std::setw(WIDTH_VALUE) << "Average: " << avg << std::endl;
+
+    std::cout << std::setw(WIDTH) << std::right << std::setfill('-') << '\n'; // Print divider
+    std::cout << std::endl;
+}
+
+/**
+ * @brief Transfers data from a fixed size array into a std::vector
+ * 
+ * @param data_in fixed size array with source data
+ * @return vector containing data from fixed sized array
+ */
+template <typename T, int N>
+std::vector<T> transfer_data(const T (&data_in)[N])
+{
+    std::vector<T> data_out;
+    for (int i = 0; i < N; i++)
+    {
+        data_out.push_back(data_in[i]);
+    }
+    return data_out;
 }

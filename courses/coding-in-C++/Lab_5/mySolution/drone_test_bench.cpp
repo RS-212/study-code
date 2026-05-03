@@ -186,5 +186,28 @@ int main ()
      * using *it is like dereferencing a pointer. It allows accessing the value in the vector, the iterator points to
      */
 
+    // === SECTION III ===
+
+    std::cout << "\n=== SECTION III ===" << std::endl;
+
+    // Task 9
+
+    // Part A
+    std::vector<int> test_vector_int = {42, 67, 81, 212, 90};
+    std::vector<double> test_vector_double = {42.2, 67.7, 81.1, 212.2, 90.0};
+
+    print_metrics(test_vector_int);
+    print_metrics(test_vector_double);
+
+    // Part B
+    double sensor_frame[5] = {42.2, 34.4, 17.7, 18.8, 2.0};
+    std::vector<double> frame_vector;
+
+    frame_vector = transfer_data(sensor_frame);
+    print_metrics(frame_vector);
+
+    // Part C
+    
+
     return 0;
 }
