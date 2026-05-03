@@ -1,4 +1,4 @@
-# Lab 4: Polymorphie in C++
+# Lab 4: Polymorphism in C++
 
 This lab focuses on understanding **polymorphism** in C++.
 
@@ -261,3 +261,111 @@ int main()
     return 0;
 }
 ```
+
+## 🔴 Section IV: Production System: Quality Control Pipeline
+
+### 🧩 Task Description
+
+You are working in a **modern manufacturing plant** for engines where products are automatically inspected before leaving the production line.
+
+Each product must pass through a **quality control pipeline** consisting of different inspection steps.
+
+The system must be flexible because:
+
+- new inspections are added frequently
+- different products require different inspections
+- some inspections share common behavior
+
+At the moment, three inspections exist:
+
+- **Weight Check**  
+  Checks whether the product weight is within a tolerance.
+
+- **Visual Inspection**  
+  Checks whether visible defects were detected.
+
+- **Temperature Test**  
+  Checks whether the product temperature is within limits.
+
+Beside the capability to perform the inspection, each inspection can create a report including:
+- type of inspection
+- success or failure of the last performed inspection
+- total success-rate of all performed inspections
+
+Since this report mechanism is used by other processes and test engineers, it needs to be like a contract, so that it **guarantees**
+that it always behaves/is called in the same way by whichever class uses it.
+
+Each product has a product ID, name and may provide different measurable values such as:
+  - weight
+  - temperature
+  - voltage
+  - visual defect status
+
+Depending on these measurable values, the corresponding inspections are performed.
+
+The plant produces 2 products at the moment:
+1. A combustion engine (including weight, temperature, visual defect status)
+2. An electric engine (including weight, temperature, voltage, visual defect status)
+
+The products can also create a report based on the performed checks. Example output:
+
+```text
+Product: Combustion Motor 
+- Weight Check: PASS
+- Temperature Test: FAIL
+- Visual Inspection: PASS
+
+Final Result: REJECTED
+```
+
+Your task is to design and implement a system that models this **quality control pipeline**.
+
+You must first create a **UML class diagram** and then implement the design in C++.
+
+---
+
+
+### 📘 Requirements
+
+Your solution must contain:
+
+1. at least **one abstract class**
+2. at least **one interface**
+3. at least **two concrete products**
+4. at least **three concrete inspections**
+5. a pipeline that stores and executes inspections polymorphically (no fake-polymorphism)
+
+---
+
+### 📌 UML Design Task
+
+Create a UML class diagram that shows:
+
+- all classes and interfaces
+- inheritance and other relationships
+- important attributes
+- important methods
+- abstract classes and methods
+
+---
+
+
+### 💻 Implementation Task
+
+Implement your UML design in C++.
+
+Your main program should:
+
+1. create 2 objects of each product and store them in one common array
+2. perform all necessary inspections on each object
+3. use pointers or references to access the objects
+4. print the report for each product object
+5. print the report for each inspection type at the end of the program 
+
+---
+
+### 🧠 Reflection Questions
+
+1. Which class in your design is abstract and why?
+2. Which interface did you use and what contract does it define?
+3. A new inspection is needed to check the voltage. How does your design support adding the new inspection?
