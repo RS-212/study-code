@@ -153,9 +153,13 @@ T max_vector(const std::vector<T>& data)
  * @return average value of all values in the vector
  */
 template <typename T>
-T average_vector(const std::vector<T>& data)
+double average_vector(const std::vector<T>& data)
 {
-    return (sum_vector(data) / data.size());
+    if (data.size() == 0)
+    {
+        return 0.0;
+    }
+    return static_cast<double>(sum_vector(data)) / data.size(); // Cast in case of int division
 }
 
 /**
@@ -169,7 +173,7 @@ void print_metrics(const std::vector<T>& data)
     // Determine metrics
     T sum = sum_vector(data);
     T max = max_vector(data);
-    T avg = average_vector(data);
+    double avg = average_vector(data);
 
     const int WIDTH = 33;
     const int WIDTH_VALUE = 15;
