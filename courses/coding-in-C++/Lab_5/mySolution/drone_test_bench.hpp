@@ -4,6 +4,9 @@
  * @brief header file: learning templates using a drone test program as an example
  */
 
+#ifndef DRONE_TEST_BENCH_HPP
+#define DRONE_TEST_BENCH_HPP
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -215,3 +218,26 @@ std::vector<T> transfer_data(const T (&data_in)[N])
     }
     return data_out;
 }
+
+/**
+ * @brief bool specialization of the average template
+ * 
+ * @param data vector with boolean data
+ * 
+ * @return true if more than half of the data is true else false
+ */
+template <>
+double average_vector<bool>(const std::vector<bool>& data)
+{
+    int sum = 0; // Count of all true values
+    for (bool element : data)
+    {
+        if (element)
+        {
+            sum++;
+        }
+    }
+    return static_cast<double>(sum) / data.size(); // Anteil true
+}
+
+#endif // DRONE_TEST_BENCH_HPP

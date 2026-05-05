@@ -207,7 +207,16 @@ int main ()
     print_metrics(frame_vector);
 
     // Part C
-    
+    std::vector<bool> motor_data = {true, false, false, true, true};
+
+    if(average_vector(motor_data) > 0.5) // More than half of the vector is true
+    {
+        std::cout << "Motor was active for most of the test run!" << std::endl;
+    }
+    else
+    {
+        std::cout << "Motor was inactive for most of the test run!" << std::endl;
+    }
 
     return 0;
 }
