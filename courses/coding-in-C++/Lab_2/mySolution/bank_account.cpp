@@ -7,6 +7,10 @@
 #include <iostream>
 #include <string>
 
+/**
+ * @class BankAccount
+ * @brief Simple Bank account class for learning
+ */
 class BankAccount
 {
     private:
@@ -29,7 +33,7 @@ class BankAccount
          * 
          * @return owner name
          */
-        std::string getOwner()
+        std::string getOwner() const
         {
             return owner;
         }
@@ -65,8 +69,8 @@ class BankAccount
             }
         }
 
-        double getBalance();
-        void getAccountInfo();
+        double getBalance() const;
+        void getAccountInfo() const;
 
 };
 
@@ -75,7 +79,7 @@ class BankAccount
  * 
  * @return value of balance
  */
-double BankAccount::getBalance()
+double BankAccount::getBalance() const
 {
     return this->balance;
 }
@@ -83,7 +87,7 @@ double BankAccount::getBalance()
 /**
  * @brief Print owner and balance to console
  */
-void BankAccount::getAccountInfo()
+void BankAccount::getAccountInfo() const
 {
     std::cout   << "Account Owner: " << getOwner()
                 << "\nAvailable Balance: " << getBalance() << std::endl;
