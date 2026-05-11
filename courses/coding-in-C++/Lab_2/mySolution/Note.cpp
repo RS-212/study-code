@@ -21,7 +21,7 @@ public:
      * @brief Creates object to store string dynamically
      * @param p_text text to store in Notes
      */
-    Note(std::string p_text)
+    Note(const std::string& p_text)
     {
         text = new std::string(p_text); // Is this faster or slower than the solution?
     }
