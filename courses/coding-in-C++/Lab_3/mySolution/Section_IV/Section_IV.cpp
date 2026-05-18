@@ -35,9 +35,39 @@
 #include <iostream>
 #include <string>
 #include "Character.hpp"
+#include "Warrior.hpp"
+#include "Mage.hpp"
+#include "Thief.hpp"
+#include "Healer.hpp"
+#include "Inventory.hpp"
+#include "Weapon.hpp"
 
 int main()
 {
-    std::cout << "Joa." << std::endl;
+    // Set up Inventories
+    Inventory inv1(10);
+    Inventory inv2(5);
+    Inventory inv3(3);
+
+    inv1.addItem("Chocolate");
+    inv2.addItem("Rope");
+    // inv3 stays empty
+
+    // Set up Weapons
+    Weapon sword("Sword of Souls", 15);
+    Weapon axe("Stormbreaker", 20);
+    Weapon bow("Longbow", 10);
+
+    // Creating 3 Characters
+    Healer healer("Frank", 100, inv1, bow, 5);
+    Thief thief("Hela", 75, inv2, axe);
+    Mage mage("Merlin", 150, inv3, sword);
+
+    // Testing functions
+    healer.display();
+    thief.display();
+    mage.display();
+
+
     return 0;
 }
