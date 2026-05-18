@@ -41,10 +41,10 @@ public:
      * @brief Constructor for Character class
      * @param name character name
      * @param health base health
-     * @param inventory starting inventory
+     * @param inventorySize starting inventory size
      * @param weapon starting weapon
      */
-    Character(const std::string name, int health, const Inventory& inventory, Weapon& weapon);
+    Character(const std::string name, int health, int inventorySize, Weapon& weapon);
 
     /**
      * @brief prints relevant character info to console

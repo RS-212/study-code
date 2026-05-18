@@ -22,11 +22,11 @@ public:
      * @brief Constructor for the Healer class
      * @param name character name
      * @param health base health
-     * @param inventory starting inventory
+     * @param inventorySize starting inventory size
      * @param weapon starting weapon
      * @param healStrength amount the healer can heal at once
      */
-    Healer(const std::string name, int health, const Inventory& inventory, Weapon& weapon, int healStrength);
+    Healer(const std::string name, int health, int inventorySize, Weapon& weapon, int healStrength);
 
     /**
      * @brief heals specified target, taking into account the healers strength

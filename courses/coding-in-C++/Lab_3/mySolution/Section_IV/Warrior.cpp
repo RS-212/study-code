@@ -10,11 +10,11 @@
  * @brief Constructor for Warriors
  * @param name character name
  * @param health base health
- * @param inventory starting inventory
+ * @param inventorySize starting inventory size
  * @param weapon starting weapon
  */
-Warrior::Warrior(const std::string name, int health, const Inventory& inventory, Weapon& weapon)
-: Character(name, health, inventory, weapon)
+Warrior::Warrior(const std::string name, int health, int inventorySize, Weapon& weapon)
+: Character(name, health, inventorySize, weapon)
 {}
 
 /**

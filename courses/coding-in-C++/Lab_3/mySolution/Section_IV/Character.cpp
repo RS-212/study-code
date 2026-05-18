@@ -9,11 +9,11 @@
  * @brief Constructor for Character class
  * @param name character name
  * @param health base health
- * @param inventory starting inventory
+ * @param inventorySize starting inventory size
  * @param weapon starting weapon
  */
-Character::Character(const std::string name, int health, const Inventory& inventory, Weapon& weapon)
-: name(name), level(1), xp(0), inventory(inventory), weapon(&weapon)
+Character::Character(const std::string name, int health, int inventorySize, Weapon& weapon)
+: name(name), level(1), xp(0), inventory(Inventory(inventorySize)), weapon(&weapon)
 {
     // Input sanitation for negative health values
     constexpr int DEFAULT_HEALTH = 100;

@@ -22,10 +22,10 @@ public:
      * @brief Constructor for Warriors
      * @param name character name
      * @param health base health
-     * @param inventory starting inventory
+     * @param inventorySize starting inventory size
      * @param weapon starting weapon
      */
-    Warrior(const std::string name, int health, const Inventory& inventory, Weapon& weapon);
+    Warrior(const std::string name, int health, int inventorySize, Weapon& weapon);
 
     /**
      * @brief override of abstract display method in Character

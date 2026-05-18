@@ -10,11 +10,11 @@
  * @brief Constructor for the Thief class
  * @param name character name
  * @param health base health
- * @param inventory starting inventory
+ * @param inventorySize starting inventory size
  * @param weapon starting weapon
  */
-Thief::Thief(const std::string name, int health, const Inventory& inventory, Weapon& weapon)
-: Warrior(name, health, inventory, weapon)
+Thief::Thief(const std::string name, int health, int inventorySize, Weapon& weapon)
+: Warrior(name, health, inventorySize, weapon)
 {}
 
 /**

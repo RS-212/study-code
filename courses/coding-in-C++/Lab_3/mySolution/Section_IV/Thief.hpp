@@ -19,10 +19,10 @@ public:
      * @brief Constructor for the Thief class
      * @param name character name
      * @param health base health
-     * @param inventory starting inventory
+     * @param inventorySize starting inventory size
      * @param weapon starting weapon
      */
-    Thief(const std::string name, int health, const Inventory& inventory, Weapon& weapon);
+    Thief(const std::string name, int health, int inventorySize, Weapon& weapon);
 
     /**
      * @brief steal an item from another character's inventory

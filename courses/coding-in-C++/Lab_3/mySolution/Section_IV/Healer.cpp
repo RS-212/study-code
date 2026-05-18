@@ -9,11 +9,11 @@
  * @brief Constructor for the Healer class
  * @param name character name
  * @param health base health
- * @param inventory starting inventory
+ * @param inventorySize starting inventory size
  * @param weapon starting weapon
  */
-Healer::Healer(const std::string name, int health, const Inventory& inventory, Weapon& weapon, int healStrength)
-: Mage(name, health, inventory, weapon)
+Healer::Healer(const std::string name, int health, int inventorySize, Weapon& weapon, int healStrength)
+: Mage(name, health, inventorySize, weapon)
 {
     // Input sanitizing, so no negative heal occurs
     constexpr int DEFAULT_HEAL_STRENGTH = 10;
