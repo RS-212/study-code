@@ -14,16 +14,26 @@
  */
 class Healer : public Mage
 {
-private:
+protected:
     int healStrength;
 
 public:
+    /**
+     * @brief Constructor for the Healer class
+     * @param name character name
+     * @param health base health
+     * @param inventory starting inventory
+     * @param weapon starting weapon
+     * @param healStrength amount the healer can heal at once
+     */
+    Healer(const std::string name, int health, const Inventory& inventory, Weapon& weapon, int healStrength);
+
     /**
      * @brief heals specified target, taking into account the healers strength
      * @param target Character to heal
      * @return reference to healer
      */
-    Healer& heal(const Character& target);
+    Healer& heal(Character& target);
 };
 
 #endif // HEALER_HPP

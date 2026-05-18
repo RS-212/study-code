@@ -20,10 +20,16 @@ private:
 
 public:
     /**
-     * @brief print name and damage to console
-     * @return Reference to caller
+     * @brief Constructor of the Weapon class
+     * @param name name of the weapon
+     * @param damage damage of the weapon
      */
-    Weapon& displayStats() const;
+    Weapon(const std::string& name, int damage);
+
+    /**
+     * @brief print name and damage to console
+     */
+    void displayStats() const;
 };
 
 #endif // WEAPON_HPP

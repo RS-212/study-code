@@ -14,19 +14,23 @@ class Healer; // Pedefenition to avoid chicken and egg problem
 
 /**
  * @class Character
- * @brief Abstract charakter class holding template for basic functionality
+ * @brief Abstract character class holding template for basic functionality
  */
 class Character
 {
 friend class Healer;
 
 private:
+    int health;
+
+protected:
     // Attributes
     const std::string name;
-    int health;
     int level;
     int xp;
-    static constexpr int xpLimit = 10;
+    
+    static constexpr int maxLevel = 10;
+    static constexpr int xpLimit = 10; // Never set to 0
 
     // Associations
     Inventory inventory;
@@ -34,10 +38,19 @@ private:
 
 public:
     /**
+     * @brief Constructor for Character class
+     * @param name character name
+     * @param health base health
+     * @param inventory starting inventory
+     * @param weapon starting weapon
+     */
+    Character(const std::string name, int health, const Inventory& inventory, Weapon& weapon);
+
+    /**
      * @brief prints relevant character info to console
      * @return reference to the character
      */
-    virtual Character& display() const = 0;
+    virtual Character& display() = 0;
 
     /**
      * @brief regenerates class specific points (implemented in derived classes)
@@ -61,9 +74,15 @@ public:
 
     /**
      * @brief get reference to the characters Inventory
-     * @return reference to characters invernotry
+     * @return reference to character's inventory
      */
     Inventory& getInventory();
+
+    /**
+     * @brief get current health points
+     * @return health
+     */
+    int getHealth() const;
 };
 
 #endif // CHARACTER_HPP

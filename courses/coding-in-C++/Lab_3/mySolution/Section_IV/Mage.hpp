@@ -14,15 +14,24 @@
  */
 class Mage : public Character
 {
-private:
+protected:
     int mana;
 
 public:
     /**
+     * @brief Constructor for Mages
+     * @param name character name
+     * @param health base health
+     * @param inventory starting inventory
+     * @param weapon starting weapon
+     */
+    Mage(const std::string name, int health, const Inventory& inventory, Weapon& weapon);
+
+    /**
      * @brief override of abstract display method in Character
      * @return reference to calling Mage
      */
-    Mage& display() const override;
+    Mage& display() override;
 
     /**
      * @brief regenerate mana points

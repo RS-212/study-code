@@ -14,15 +14,24 @@
  */
 class Warrior : public Character
 {
-private:
+protected:
     int weaponXp;
 
 public:
     /**
+     * @brief Constructor for Warriors
+     * @param name character name
+     * @param health base health
+     * @param inventory starting inventory
+     * @param weapon starting weapon
+     */
+    Warrior(const std::string name, int health, const Inventory& inventory, Weapon& weapon);
+
+    /**
      * @brief override of abstract display method in Character
      * @return reference to calling Warrior
      */
-    Warrior& display() const override;
+    Warrior& display() override;
 
     /**
      * @brief regenerate weapon xp points
