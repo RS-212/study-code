@@ -3,6 +3,12 @@
 #include <string>
 #include <stdexcept>
 
+class SensorFailureError : public std::runtime_error
+{
+public:
+    SensorFailureError(const std::string& error) : std::runtime_error(error) {}
+};
+
 class Sensor
 {
 private:
@@ -52,8 +58,12 @@ public:
                 << "\nValid values from '" << this->min_value << "' to '" << this->max_value
                 << "'\n" << std::endl;
     }
-};
 
+    void simulate_failure() const
+    {
+        throw SensorFailureError("Simulated error in '" + this->name + "'");
+    }
+};
 
 int main()
 {
@@ -72,41 +82,19 @@ int main()
     // Testing three sensors
     try
     {
-        Sensor humidity("Humidity Sensor", -1.0, MIN_HUMIDITY, MAX_HUMIDITY);
-
-        humidity.print_info();
-    }
-    catch(const std::exception& error)
-    {
-        std::cout << "Error: " << error.what() << std::endl;
-    }
-    catch(...)
-    {
-        std::cout << "Unknown error!" << std::endl;
-    }
-
-    try
-    {
-        Sensor temperature("Temperature Sensor", 5000, MIN_TEMPERATURE, MAX_TEMPERATURE);
-
-        temperature.print_info();
-    }
-    catch(const std::exception& error)
-    {
-        std::cout << "Error: " << error.what() << std::endl;
-    }
-    catch(...)
-    {
-        std::cout << "Unknown error!" << std::endl;
-    }
-
-    try
-    {
+        Sensor humidity("Humidity Sensor", 0.0, MIN_HUMIDITY, MAX_HUMIDITY);
+        Sensor temperature("Temperature Sensor", 0.0, MIN_TEMPERATURE, MAX_TEMPERATURE);
         Sensor water_level("Water level Sensor", 0.0, MIN_WATER_LEVEL, MAX_WATER_LEVEL);
 
+        humidity.print_info();
+        temperature.print_info();
         water_level.print_info();
 
-        water_level.update_value(-5);
+        humidity.simulate_failure();
+    }
+    catch(const SensorFailureError& error)
+    {
+        std::cout << "Sensor Failure!\n" << error.what() << std::endl;
     }
     catch(const std::exception& error)
     {
