@@ -1,3 +1,6 @@
+#ifndef SECTION_II_HPP
+#define SECTION_II_HPP
+
 #include <vector>
 
 class AdjacencyMatrix
@@ -14,3 +17,5 @@ public:
     int getWeight(int from, int to) const;
     void printMatrix() const;
 };
+
+#endif // SECTION_II_HPP
