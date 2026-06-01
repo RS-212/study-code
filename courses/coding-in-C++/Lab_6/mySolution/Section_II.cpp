@@ -18,33 +18,9 @@ private:
     const double max_value;
 
 public:
-    Sensor(std::string name, double initial_value, double min_value, double max_value)
-    : name(name), min_value(min_value), max_value(max_value)
-    {
-        if (initial_value < min_value)
-        {
-            throw std::invalid_argument("Value too small! Could not initialize!");   
-        }
-        else if (initial_value > max_value)
-        {
-            throw std::invalid_argument("Value too large! Could not initialize!");
-        }
+    Sensor(std::string name, double initial_value, double min_value, double max_value);
 
-        this->value = initial_value;
-    }
-
-    void update_value(double value)
-    {
-        if (value < min_value)
-        {
-            throw std::out_of_range("Value too small! Could not override!");
-        }
-        else if (value > max_value)
-        {
-            throw std::out_of_range("Value too large! Could not override!");
-        }
-        this->value = value;
-    }
+    void update_value(double value);
 
     double get_value()
     {
@@ -64,6 +40,34 @@ public:
         throw SensorFailureError("Simulated error in '" + this->name + "'");
     }
 };
+
+Sensor::Sensor(std::string name, double initial_value, double min_value, double max_value)
+: name(name), min_value(min_value), max_value(max_value)
+{
+    if (initial_value < min_value)
+    {
+        throw std::invalid_argument("Value too small! Could not initialize!");   
+    }
+    else if (initial_value > max_value)
+    {
+        throw std::invalid_argument("Value too large! Could not initialize!");
+    }
+
+    this->value = initial_value;
+}
+
+void Sensor::update_value(double value)
+{
+    if (value < min_value)
+    {
+        throw std::out_of_range("Value too small! Could not override!");
+    }
+    else if (value > max_value)
+    {
+        throw std::out_of_range("Value too large! Could not override!");
+    }
+    this->value = value;
+}
 
 int main()
 {
